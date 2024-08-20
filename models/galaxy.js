@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Galaxy.init({
     name: DataTypes.STRING,
     size: DataTypes.INTEGER,
-    type: DataTypes.STRING
+    description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Galaxy',
