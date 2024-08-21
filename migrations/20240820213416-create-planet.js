@@ -15,8 +15,8 @@ module.exports = {
       size: {
         type: Sequelize.INTEGER
       },
-      type: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

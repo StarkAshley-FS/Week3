@@ -15,8 +15,8 @@ module.exports = {
       size: {
         type: Sequelize.INTEGER
       },
-      type: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +25,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      galaxyId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Galaxies',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     });
   },
