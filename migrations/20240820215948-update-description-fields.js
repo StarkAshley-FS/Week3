@@ -1,39 +1,33 @@
 'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.renameColumn('Planets', 'type', 'description');
-    await queryInterface.changeColumn('Planets', 'description', {
-      type: Sequelize.TEXT,
-      allowNull: true});
-
-    await queryInterface.renameColumn('Stars', 'type', 'description');
-    await queryInterface.changeColumn('Stars', 'description', {
-      type: Sequelize.TEXT,
-      allowNull: true});
-  
-    await queryInterface.renameColumn('Galaxies', 'type', 'description');
+  async up(queryInterface, Sequelize) {
     await queryInterface.changeColumn('Galaxies', 'description', {
       type: Sequelize.TEXT,
-      allowNull: true});  
-    
+      allowNull: true
+    });
+    await queryInterface.changeColumn('Stars', 'description', {
+      type: Sequelize.TEXT,
+      allowNull: true
+    });
+    await queryInterface.changeColumn('Planets', 'description', {
+      type: Sequelize.TEXT,
+      allowNull: true
+    });
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.renameColumn('Planets', 'description', 'type');
-    await queryInterface.changeColumn('Planets', 'type', {
+  async down(queryInterface, Sequelize) {
+    await queryInterface.changeColumn('Galaxies', 'description', {
       type: Sequelize.STRING,
-      allowNull: true});
-
-    await queryInterface.renameColumn('Stars', 'description', 'type');
-    await queryInterface.changeColumn('Stars', 'type', {
+      allowNull: true
+    });
+    await queryInterface.changeColumn('Stars', 'description', {
       type: Sequelize.STRING,
-      allowNull: true,});
-
-    await queryInterface.renameColumn('Galaxies', 'description', 'type');
-    await queryInterface.changeColumn('Galaxies', 'type', {
+      allowNull: true
+    });
+    await queryInterface.changeColumn('Planets', 'description', {
       type: Sequelize.STRING,
-      allowNull: true,});
+      allowNull: true
+    });
   }
 };
