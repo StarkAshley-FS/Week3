@@ -7,6 +7,9 @@ const app           = express()
 // Load in our RESTful routers
 const routers = require('./routers/index.js')
 
+//middleware parse json
+app.use(express.json());
+
 // Home page welcome middleware
 app.get('/', (req, res) => {
   res
