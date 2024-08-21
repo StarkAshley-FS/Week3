@@ -11,17 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Star.belongsTo(models.Galaxy);
-      models.Star.hasMany(models.Planet, { through: 'StarsPlanets' });
+      models.Star.belongsTo(models.Galaxy, { foreignKey: 'galaxyId' });
+      models.Star.hasMany(models.Planet, { foreignKey: 'starId' });
+      models.Star.belongsToMany(models.Planet, { through: 'StarsPlanets' });
     }
   }
   Star.init({
     name: DataTypes.STRING,
     size: DataTypes.INTEGER,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    galaxyId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Galaxies',
+        key: 'id'
+      },
+      allowNull: false 
+    }
   }, {
     sequelize,
     modelName: 'Star',
+    timestamps: true
   });
   return Star;
 };
